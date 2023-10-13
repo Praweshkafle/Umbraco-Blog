@@ -1,0 +1,50 @@
+﻿
+            @using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Blog>
+@using Umbraco.Cms.Core.Models.PublishedContent;
+@{
+	Layout = "MasterPage.cshtml";
+}
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/post-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>Welcome To Blog Posts</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        @{
+        
+        var selection = Umbraco.Content(Guid.Parse("3a103f13-e412-465e-bb10-8d53e60c6d0b"))
+    .ChildrenOfType("blogItem")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+        }
+        <div class="container">
+             <div class="row">
+                @foreach (var item in selection)
+                {
+                    var thumbnail = item. Value<IPublishedContent>("thumbnailImage");
+                            
+                    <div class="col-sm" >
+                        <a href="@item.Url()">
+                          <img src="@thumbnail.Url()" style="width: 200px; height: 150px;">
+                          <h1>@item.Value("title")</h1>
+                          <p>Author: @item.Value("authorName")</p>
+                       </a>
+                    </div>
+                }
+            </div>
+       </div>
+   
+
+      
+
+

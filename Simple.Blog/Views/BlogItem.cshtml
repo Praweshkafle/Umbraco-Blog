@@ -1,0 +1,40 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.BlogItem>
+@using Umbraco.Cms.Core.Models.PublishedContent;
+@{
+	Layout = "MasterPage.cshtml";
+}
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/post-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1>@Model.Value("title")</h1>
+                            <h2 class="subheading">@Model.Value("subtitle")</h2>
+                            <span class="meta">
+                                Posted by:
+                                <a href="#!">@Model.Value("authorName")
+</a>
+                               , on @Model.Value("publishedOn")
+
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <p>@Model.Value("introText")
+</p>
+                        @Model.Value("bodyText")
+                    </div>
+                </div>
+            </div>
+        </article>@Model.Value("introText")
