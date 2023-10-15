@@ -1,0 +1,27 @@
+﻿@using Simple.Blog.Controllers;
+@model Simple.Blog.Models.ContactViewModel;
+<div class="row">
+    <div class="large-12 columns">
+        <section class="page-container">
+            @using (Html.BeginUmbracoForm<ContactController>(nameof(ContactController.CreateContactMessage)))
+            {
+                
+                <div class="input-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" />
+                </div>
+                <div>
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" />
+                </div>
+                <div>
+                    <label asp-for="Message"></label>
+                    <textarea asp-for="Message"></textarea>
+                </div>
+                <br />
+                <input type="submit" name="Submit" value="Submit" />
+            }
+        </section>
+    </div>
+
+</div>
