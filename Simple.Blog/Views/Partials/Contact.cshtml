@@ -2,19 +2,19 @@
 @model Simple.Blog.Models.ContactViewModel;
 <div class="row">
     <div class="large-12 columns">
-        <section class="page-container">
+        <section class="page-container m-5" >
             @using (Html.BeginUmbracoForm<ContactController>(nameof(ContactController.CreateContactMessage)))
             {
                 
-                <div class="input-group">
+                <div class="input-group p-2">
                     <label asp-for="Name"></label>
                     <input asp-for="Name" />
                 </div>
-                <div>
+                <div class="p-2">
                     <label asp-for="Email"></label>
                     <input asp-for="Email" />
                 </div>
-                <div>
+                <div class="p-2">
                     <label asp-for="Message"></label>
                     <textarea asp-for="Message"></textarea>
                 </div>

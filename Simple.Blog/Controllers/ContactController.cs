@@ -1,8 +1,7 @@
-﻿
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoRepository;
+using Simple.Blog.Extension;
 using Simple.Blog.Models;
 using Umbraco.Cms.Core.Cache;
 using Umbraco.Cms.Core.Logging;
@@ -43,10 +42,10 @@ namespace Simple.Blog.Controllers
                 {
                     return CurrentUmbracoPage();
                 }
-                var collection = DB.GetCollection<ContactViewModel>("Contact");
-                // var contactMessage = contactRepository.Add(model);
-                collection.InsertOne(model);
-                //ViewBag.Contact = contactMessage;
+                var db = DB.GetCollection<ContactViewModel>("Contact");
+                db.InsertOne(model);
+                List<ContactViewModel>? collection = DB.GetCollection<ContactViewModel>("Contact").Find(new BsonDocument()).ToList();
+                TempData.Put("model", collection);
                 return RedirectToCurrentUmbracoPage();
             }
             catch (Exception ex)
@@ -54,7 +53,6 @@ namespace Simple.Blog.Controllers
 
                 throw;
             }
-
         }
     }
 }
